@@ -5,11 +5,29 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      givenName: '',
-      surname: '',
+      givenName: 'John',
+      surname: 'Doe',
+      email: 'email@email.com',
+      phone: '021 0123 4567',
+      // address
+      house: '1',
+      street: 'Darling Island Road',
+      suburb: 'Pyrmont',
+      state: 'NSW',
+      postcode: '2009',
+      country: 'Australia',
     };
     this.onGivenNameChange = this.onGivenNameChange.bind(this);
     this.onSurnameChange = this.onSurnameChange.bind(this);
+    this.onEmailChange = this.onEmailChange.bind(this);
+    this.onPhoneChange = this.onPhoneChange.bind(this);
+    // address
+    this.onHouseChange = this.onHouseChange.bind(this);
+    this.onStreetChange = this.onStreetChange.bind(this);
+    this.onSuburbChange = this.onSuburbChange.bind(this);
+    this.onStateChange = this.onStateChange.bind(this);
+    this.onPostcodeChange = this.onPostcodeChange.bind(this);
+    this.onCountryChange = this.onCountryChange.bind(this);
   }
 
   onGivenNameChange(e){
@@ -21,6 +39,56 @@ class App extends Component {
   onSurnameChange(e){
     this.setState({
       surname: e.target.value
+    });
+  }
+
+  onEmailChange(e){
+    this.setState({
+      email: e.target.value
+    });
+  }
+
+  onPhoneChange(e){
+    this.setState({
+      phone: e.target.value
+    });
+  }
+
+  // Address
+
+  onHouseChange(e){
+    this.setState({
+      house: e.target.value,
+    });
+  }
+
+  onStreetChange(e){
+    this.setState({
+      street: e.target.value,
+    });
+  }
+
+  onSuburbChange(e){
+    this.setState({
+      suburb: e.target.value,
+    });
+  }
+
+  onStateChange(e){
+    this.setState({
+      state: e.target.value,
+    });
+  }
+
+  onPostcodeChange(e){
+    this.setState({
+      postcode: e.target.value,
+    });
+  }
+
+  onCountryChange(e){
+    this.setState({
+      country: e.target.value,
     });
   }
 
@@ -43,11 +111,11 @@ class App extends Component {
               </div>
               <div className="field">
                 <label htmlFor="email">EMAIL</label>
-                <input type="text" id="email" />
+                <input type="text" id="email" onChange={this.onEmailChange} value={this.state.email} />
               </div>
               <div className="field">
                 <label htmlFor="phone">PHONE</label>
-                <input type="text" id="phone" />
+                <input type="text" id="phone" onChange={this.onPhoneChange} value={this.state.phone} />
               </div>
             </div>
 
@@ -55,27 +123,27 @@ class App extends Component {
             <div className="field-group">
               <div className="field">
                 <label htmlFor="house">HOUSE NAME OR #</label>
-                <input type="text" id="house" />
+                <input type="text" id="house" onChange={this.onHouseChange} value={this.state.house} />
               </div>
               <div className="field">
                 <label htmlFor="street">STREET</label>
-                <input type="text" id="street" />
+                <input type="text" id="street" onChange={this.onStreetChange} value={this.state.street} />
               </div>
               <div className="field">
                 <label htmlFor="suburb">SUBURB</label>
-                <input type="text" id="suburb" />
+                <input type="text" id="suburb" onChange={this.onSuburbChange} value={this.state.suburb} />
               </div>
               <div className="field">
                 <label htmlFor="state">STATE</label>
-                <input type="text" id="state" />
+                <input type="text" id="state" onChange={this.onStateChange} value={this.state.state} />
               </div>
               <div className="field">
                 <label htmlFor="postcode">POSTCODE</label>
-                <input type="text" id="postcode" />
+                <input type="text" id="postcode" onChange={this.onPostcodeChange} value={this.state.postcode} />
               </div>
               <div className="field">
                 <label htmlFor="country">COUNTRY</label>
-                <input type="text" id="country" />
+                <input type="text" id="country" onChange={this.onCountryChange} value={this.state.country} />
               </div>
             </div>
             <div className="buttons">
@@ -93,24 +161,27 @@ class App extends Component {
             </div>
             <dl>
               <dt>EMAIL</dt>
-              <dd>sam.faifax@fairfax.com.au</dd>
+              <dd>{this.state.email}</dd>
             </dl>
             <dl>
               <dt>PHONE</dt>
-              <dd>02 9282 2833</dd>
+              <dd>{this.state.phone}</dd>
             </dl>
             <div className="adr">
               <dl>
                 <dt>ADDRESS</dt>
-                <dd>1 Darling Island Road,<br/>Pyrmont, NSW</dd>
+                <dd>
+                  {this.state.house} {this.state.street},<br/>
+                  {this.state.suburb}, {this.state.state}
+                </dd>
               </dl>
               <dl>
                 <dt>POSTCODE</dt>
-                <dd>2009</dd>
+                <dd>{this.state.postcode}</dd>
               </dl>
               <dl>
                 <dt>COUNTRY</dt>
-                <dd>Australia</dd>
+                <dd>{this.state.country}</dd>
               </dl>
             </div>
           </div>
