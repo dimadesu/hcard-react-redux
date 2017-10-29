@@ -16,6 +16,9 @@ class App extends Component {
       state: 'NSW',
       postcode: '2009',
       country: 'Australia',
+      // avatar
+      file: '',
+      imagePreviewUrl: '',
     };
     this.onGivenNameChange = this.onGivenNameChange.bind(this);
     this.onSurnameChange = this.onSurnameChange.bind(this);
@@ -92,7 +95,30 @@ class App extends Component {
     });
   }
 
+  _handleImageChange(e) {
+    e.preventDefault();
+
+    let reader = new FileReader();
+    let file = e.target.files[0];
+
+    reader.onloadend = () => {
+      this.setState({
+        file: file,
+        imagePreviewUrl: reader.result
+      });
+    }
+
+    reader.readAsDataURL(file)
+  }
+
   render() {
+    const {imagePreviewUrl} = this.state;
+    let $imagePreview = null;
+    if (imagePreviewUrl) {
+      $imagePreview = (<img src={imagePreviewUrl} />);
+    }
+
+
     return (
       <div className="App">
         <div className="hcard-editor">
@@ -147,7 +173,11 @@ class App extends Component {
               </div>
             </div>
             <div className="buttons">
-              <button type="button">Upload Avatar</button>
+              <input
+                type="file"
+                accept="image/*"  
+                onChange={(e)=>this._handleImageChange(e)}
+              />
               <button type="button">Create hCard</button>
             </div>
           </form>
@@ -155,7 +185,7 @@ class App extends Component {
         <div className="hcard-preview">
           <div className="hcard-card vcard">
             <div>HCARD PREVIEW</div>
-            <div>Avatar</div>
+            <div className="photo">{$imagePreview}</div>
             <div>
               {this.state.givenName} {this.state.surname}
             </div>
