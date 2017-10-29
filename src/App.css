@@ -9,12 +9,31 @@
 .hcard-preview {
   flex: 1;
   padding: 20px;
-}
-
-.hcard-preview {
+  /* block level */
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.field-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.field-group > div {
+  width: 49%;
+}
+
+.field input {
+  width: 100%;
+}
+
+.buttons {
+  margin-top: 20px;
+}
+
+.hcard-preview {
   background-color: #eee;
 }
 
