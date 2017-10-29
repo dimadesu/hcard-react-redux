@@ -115,13 +115,14 @@ class App extends Component {
     const {imagePreviewUrl} = this.state;
     let $imagePreview = null;
     if (imagePreviewUrl) {
-      $imagePreview = (<img src={imagePreviewUrl} />);
+      $imagePreview = (<img src={imagePreviewUrl} alt="avatar"/>);
     }
 
 
     return (
       <div className="App">
         <div className="hcard-editor">
+          
           <form>
             <h1>hCard Builder</h1>
             
@@ -183,38 +184,44 @@ class App extends Component {
           </form>
         </div>
         <div className="hcard-preview">
-          <div className="hcard-card vcard">
-            <div>HCARD PREVIEW</div>
-            <div className="photo">{$imagePreview}</div>
-            <div>
-              {this.state.givenName} {this.state.surname}
+          <div className="hcard-card">
+
+            <div className="hcard-header">
+              <div className="photo">{$imagePreview}</div>
+              <div>
+                {this.state.givenName} {this.state.surname}
+              </div>
             </div>
-            <dl>
-              <dt>EMAIL</dt>
-              <dd>{this.state.email}</dd>
-            </dl>
-            <dl>
-              <dt>PHONE</dt>
-              <dd>{this.state.phone}</dd>
-            </dl>
-            <div className="adr">
+
+            <div className="hcard-body">
               <dl>
-                <dt>ADDRESS</dt>
-                <dd>
-                  {this.state.house} {this.state.street},<br/>
-                  {this.state.suburb}, {this.state.state}
-                </dd>
+                <dt>EMAIL</dt>
+                <dd>{this.state.email}</dd>
               </dl>
               <dl>
-                <dt>POSTCODE</dt>
-                <dd>{this.state.postcode}</dd>
+                <dt>PHONE</dt>
+                <dd>{this.state.phone}</dd>
               </dl>
-              <dl>
-                <dt>COUNTRY</dt>
-                <dd>{this.state.country}</dd>
-              </dl>
+              <div className="adr">
+                <dl>
+                  <dt>ADDRESS</dt>
+                  <dd>
+                    {this.state.house} {this.state.street}, {this.state.suburb}, {this.state.state}
+                  </dd>
+                </dl>
+                <dl>
+                  <dt>POSTCODE</dt>
+                  <dd>{this.state.postcode}</dd>
+                </dl>
+                <dl>
+                  <dt>COUNTRY</dt>
+                  <dd>{this.state.country}</dd>
+                </dl>
+              </div>
+
             </div>
           </div>
+
         </div>
       </div>
     );
